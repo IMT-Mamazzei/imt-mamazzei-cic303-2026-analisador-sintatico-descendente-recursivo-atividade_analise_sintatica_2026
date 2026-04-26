@@ -1,6 +1,7 @@
 name: Autograding Tests
 'on':
 - push
+- 
 - repository_dispatch
 permissions:
   checks: write
@@ -9,7 +10,7 @@ permissions:
 jobs:
   run-autograding-tests:
     runs-on: ubuntu-latest
-    if: github.actor != 'github-classroom[bot]'
+    # if: github.actor != 'github-classroom[bot]'
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -80,8 +81,6 @@ jobs:
         command: mvn test -Dtest=ValidadorParserTest#test06_ErroSintaticoParentesesNaoFechado -f projeto/pom.xml
         timeout: 10
         max-score: 1
-
-
     
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
